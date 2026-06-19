@@ -9,7 +9,7 @@ from rag.ingest import ingestpdf
 from rag.chunker import chunk
 from rag.retriever import retriever
 from rag.vectorstore import get_vectorstore, get_uploaded_files
-
+from rag.llm import get_model
 
 # Session State Initialization
 if "messages" not in st.session_state:
@@ -17,14 +17,7 @@ if "messages" not in st.session_state:
 
 
 
-# Models
 
-
-model = ChatOllama(
-    model="qwen3:8b",
-    reasoning=False,
-    num_predict=1000
-)
 
 
 vectorstore = get_vectorstore()
@@ -69,6 +62,14 @@ if st.sidebar.button("Process Files"):
     else:
         st.sidebar.warning("Please upload files first.")
 
+
+temperature = st.sidebar.slider("Temperrature", 0.0,1.0,0.2,help="Higher values make responses more creative.")
+reasoning = st.sidebar.checkbox("Reasoning",value=False, help="More accurate answers but take more time")
+max_token = st.sidebar.slider("Max output Tokens",1,2000,1000, help="Maximun length of Genarated output")
+Top_k_chunks = st.sidebar.number_input("Top K chunks",1,15,10, help="Number of chunks to be retrived")
+
+# Model
+model = get_model(reasoning,max_token,temperature) 
 
 
 # Document Management
@@ -157,12 +158,12 @@ if prompt:
         
 
 
-    retrieved_result = retriever(prompt, active_files=active_files)
+    retrieved_result = retriever(prompt, active_files,Top_k_chunks)
 
     context = "\n\n".join(doc.page_content for doc in retrieved_result)
 
 
-    st.sidebar.write("Retrieved results: ", len(retrieved_result))
+    st.sidebar.write("Retrieved Chunks: ", len(retrieved_result))
     st.sidebar.write("total Number of Chunks: ",len(vectorstore.get()['ids']))
     messages = [
         SystemMessage(
