@@ -4,7 +4,7 @@ from langchain_ollama import OllamaEmbeddings
 def get_vectorstore():
 
     embedding = OllamaEmbeddings(model ='nomic-embed-text')
-    embedding.embed_query('test')
+    embedding.embed_query('test')   #force embed to test if the embedding model is present
 
     return  Chroma(
         collection_name="Files",

@@ -5,6 +5,8 @@ from langchain_core.messages import (
     SystemMessage,
     AIMessage
 )
+import subprocess
+
 from rag.ingest import ingestpdf
 from rag.chunker import chunk
 from rag.retriever import retriever
@@ -15,6 +17,27 @@ from rag.llm import get_model
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
+
+
+
+#check if ollama is running 
+
+
+try:
+    subprocess.run(
+        ["ollama", "list"],
+        capture_output=True,
+        text=True,
+        check=True
+)
+
+except Exception:
+    st.error("Ollama is not running.")
+    st.warning("Make sure Ollama app is installed and Running")
+    st.markdown("**Start Ollama with:**")
+    st.code("ollama serve")
+
+    st.stop()
 
 
 
