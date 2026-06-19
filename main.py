@@ -19,8 +19,15 @@ if "messages" not in st.session_state:
 
 
 
+try:
+    vectorstore = get_vectorstore()
+except Exception as e:
+    st.warning("Make sure nomic-text-embed is install")
+    st.markdown("In terminal run: ")
+    st.code("ollama pull nomic-embed-text")
+    st.stop()
 
-vectorstore = get_vectorstore()
+
 
 stored_files = get_uploaded_files(vectorstore)
 
@@ -63,13 +70,6 @@ if st.sidebar.button("Process Files"):
         st.sidebar.warning("Please upload files first.")
 
 
-temperature = st.sidebar.slider("Temperrature", 0.0,1.0,0.2,help="Higher values make responses more creative.")
-reasoning = st.sidebar.checkbox("Reasoning",value=False, help="More accurate answers but take more time")
-max_token = st.sidebar.slider("Max output Tokens",1,2000,1000, help="Maximun length of Genarated output")
-Top_k_chunks = st.sidebar.number_input("Top K chunks",1,15,10, help="Number of chunks to be retrived")
-
-# Model
-model = get_model(reasoning,max_token,temperature) 
 
 
 # Document Management
@@ -111,10 +111,34 @@ for filename in stored_files:
             st.rerun()
 
 
+llm_options = ['qwen3:8b','llama3.2:3b','gemma3:4b','deepseek-r1:1.5b',"deepseek-r1:7b","mistral:7b","gpt-oss:20b","tinyllama:1.1b"]
 
+llm = st.sidebar.selectbox("Select Your Model",llm_options,help="Select model according to your device")
+temperature = st.sidebar.slider("Temperrature", 0.0,1.0,0.2,help="Higher values make responses more creative.")
+reasoning = st.sidebar.checkbox("Reasoning",value=False, help="More accurate answers but take more time")
+max_token = st.sidebar.slider("Max output Tokens",1,2000,1000, help="Maximun length of Genarated output")
+Top_k_chunks = st.sidebar.number_input("Top K chunks",1,15,10, help="Number of chunks to be retrived")
 
+# Model
+try:
+    model = get_model(
+        llm,
+        reasoning,
+        max_token,
+        temperature
+    )
 
+except Exception as e:
 
+    st.warning(f"Model not available: {e}")
+
+    st.markdown("Make sure Ollama is downloaded "
+        "[Download Ollama](https://ollama.com/download)")
+    
+    st.markdown(f"Then in terminal run: ")
+    st.code(f"ollama pull {llm}")
+
+    st.stop()
 
 # Chat History
 

@@ -1,12 +1,15 @@
 from langchain_ollama import ChatOllama
 
 
-def get_model(reasoning, max_tokens,temperature):
+def get_model(llm,reasoning, max_tokens,temperature):
     
     model = ChatOllama(
-    model="qwen3:8b",
+    model=llm,
     reasoning=reasoning,
     num_predict=max_tokens,
     temperature=temperature)
+
+    #force test to check if the model is installed
+    model.invoke('hi')
 
     return model
