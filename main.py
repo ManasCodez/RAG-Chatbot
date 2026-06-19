@@ -58,6 +58,25 @@ stored_files = get_uploaded_files(vectorstore)
 
 # Page Title
 st.title("RAG Chatbot")
+st.markdown("""
+
+    ## 👋 Welcome to RAG Chatbot
+
+    Upload your documents and ask questions about them.
+
+    ### Features
+
+    - 📄 PDF, DOCX, TXT Support
+
+    - 🔍 Semantic Search
+
+    - 🤖 Multiple Ollama Models
+
+    - 💾 Local Vector Database
+
+    - 🔒 Fully Local Processing
+
+    """)
 
 
 
@@ -140,7 +159,7 @@ llm = st.sidebar.selectbox("Select Your Model",llm_options,help="Select model ac
 temperature = st.sidebar.slider("Temperrature", 0.0,1.0,0.2,help="Higher values make responses more creative.")
 reasoning = st.sidebar.checkbox("Reasoning",value=False, help="More accurate answers but take more time")
 max_token = st.sidebar.slider("Max output Tokens",1,2000,1000, help="Maximun length of Genarated output")
-Top_k_chunks = st.sidebar.number_input("Top K chunks",1,15,10, help="Number of chunks to be retrived")
+Top_k_chunks = st.sidebar.number_input("Top K chunks",1,200,10, help="Number of chunks to be retrived")
 
 # Model
 try:
@@ -225,6 +244,7 @@ reply:
 "I could not find that information in the uploaded documents."
 
 Do not make up information.
+and if the user is saying something related to the file, or book, he is referring to the text from the context
 
 Context:
 {context}
