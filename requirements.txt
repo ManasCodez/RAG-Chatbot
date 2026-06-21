@@ -8,4 +8,5 @@ langchain-chroma
 langchain_text_splitters
 
 pypdf
+docx32xt
 chromadb

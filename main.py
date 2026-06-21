@@ -91,6 +91,9 @@ files = st.sidebar.file_uploader(
     accept_multiple_files=True
 )
 
+chunk_size = st.sidebar.slider("Chunk Size",1,1000,500, help="Size of each chunk")
+chunk_overlap = st.sidebar.slider("Chunk Overlap", 1, 500,200, help="Overlapping between two chunks")
+
 # Process button
 if st.sidebar.button("Process Files"):
     if files:
@@ -101,7 +104,7 @@ if st.sidebar.button("Process Files"):
 
                 docs = ingestpdf(file)
                 
-                docs_chunk = chunk(docs)
+                docs_chunk = chunk(docs,chunk_size,chunk_overlap)
                 vectorstore.add_documents(docs_chunk)
                 st.rerun()
 
