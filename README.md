@@ -187,6 +187,19 @@ What projects has the candidate completed?
 
 ---
 
+<img width="2048" height="1128" alt="1" src="https://github.com/user-attachments/assets/3155e6cd-2d1b-4017-ac08-1652edcbd9cd" />
+<img width="2048" height="1128" alt="2" src="https://github.com/user-attachments/assets/19604117-3d5a-4b52-8f26-192eafe6a3cb" />
+<img width="2048" height="1128" alt="3" src="https://github.com/user-attachments/assets/506d55aa-f81c-4e07-990a-6a8f1a3c9a7f" />
+<img width="2048" height="1128" alt="4" src="https://github.com/user-attachments/assets/e55ff9bc-aa49-4250-a8a0-b75964ed8a85" />
+<img width="2048" height="1128" alt="5" src="https://github.com/user-attachments/assets/27560b52-1fae-413d-9186-55018575f04e" />
+
+
+
+
+
+
+---
+
 # Tech Stack
 
 - Python
