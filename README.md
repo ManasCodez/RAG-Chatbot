@@ -192,10 +192,7 @@ What projects has the candidate completed?
 <img width="2048" height="1128" alt="3" src="https://github.com/user-attachments/assets/506d55aa-f81c-4e07-990a-6a8f1a3c9a7f" />
 <img width="2048" height="1128" alt="4" src="https://github.com/user-attachments/assets/e55ff9bc-aa49-4250-a8a0-b75964ed8a85" />
 <img width="2048" height="1128" alt="5" src="https://github.com/user-attachments/assets/27560b52-1fae-413d-9186-55018575f04e" />
-
-
-
-
+<img width="2900" height="1602" alt="image" src="https://github.com/user-attachments/assets/1184a667-8ba1-4af3-a528-cf901ab129f3" />
 
 
 ---
