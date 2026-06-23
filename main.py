@@ -57,7 +57,7 @@ stored_files = get_uploaded_files(vectorstore)
 
 
 # Page Title
-st.title("RAG Chatbot")
+st.title("LOCAL RAG Chatbot")
 st.markdown("""
 
     ## 👋 Welcome to RAG Chatbot
