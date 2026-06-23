@@ -237,7 +237,7 @@ if prompt:
     messages = [
         SystemMessage(
     content=f"""
-You are a helpful RAG assistant.
+You are a helpful retrieveal augmented generation assistant.
 
 Use ONLY the provided context.
 
